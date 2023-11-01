@@ -1,6 +1,5 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-
 using dotnetapp.Models;
 
 namespace dotnetapp.Controllers;
@@ -9,7 +8,12 @@ namespace dotnetapp.Controllers;
 public class DealerController:Controller
 
 {
-    private readonly Ap
+    private readonly ApplicationDbContext context;
+
+    public DealerController(ApplicationDbContext _context)
+    {
+        context=_context; 
+    }
     public IActionResult Index()
     {
         return View();
@@ -18,19 +22,35 @@ public class DealerController:Controller
     {
         return View();
     }
-    public IActionResult Edit()
-    {
-        return View();
-    }
-    [HttpPost]
-     public IActionResult Create(Dealer d)
-    {
+    // public IActionResult Edit()
+    // {
+    //     return View();
+    // }
+    //  [HttpPost]
+    //  public IActionResult Create(Dealer dealer)
+    // {
+    //     var data
         
-        return View();
-    }
+    //     return View();
+    // }
     // public IActionResult Description()
     // {
     //     return View();
     // }
+    public IActionResult Create()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Create(Dealer dealer)
+    {
+        if(ModelState.IsValid)
+        {
+            context.Dealers.Add(dealer);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
   
 }

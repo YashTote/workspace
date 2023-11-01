@@ -14,12 +14,13 @@ namespace dotnetapp.Models
     {
        public int ID{get;set;}
        public string Name{get;set;}
+    //    [Datatype(typeof(string))]
        public DateTime RegistrationDate{get;set;}
 
        public string AutoPartName{get;set;}
        public string Manufacturer{get;set;}
        public string MobileNumber{get;set;}
        public string Email{get;set;}
-       public string description{get;set;} 
+       public string Description{get;set;} 
     }
 }
